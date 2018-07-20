@@ -2,20 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="90dp"
     android:background="#F0F4C3"
     android:clickable="true"
-    android:focusable="true"
-    android:orientation="horizontal">
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/agneepath"
+        android:layout_margin="8dp"
         android:adjustViewBounds="true"
-        android:layout_margin="8dp" />
+        android:src="@drawable/agneepath" />
 
     <TextView
         android:id="@+id/title"
@@ -31,18 +30,31 @@
         android:id="@+id/artist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/thumbnail"
         android:textSize="12sp"
         tools:text="Artist" />
+
     <ImageButton
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:id="@+id/playButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ic_play_arrow_black" />
+
+
+    <ImageButton
+        android:id="@+id/pauseButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="8dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/play"/>
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_pause_black"
+        android:visibility="gone" />
 
 </RelativeLayout>

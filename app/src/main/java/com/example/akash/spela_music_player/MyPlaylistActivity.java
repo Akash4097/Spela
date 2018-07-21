@@ -16,13 +16,12 @@ import java.util.List;
 
 import static java.security.AccessController.getContext;
 
-public class MyPlaylistActivity extends AppCompatActivity {
+public class MyPlaylistActivity extends AppCompatActivity implements MyAdapter.MyAdapterClickListener {
 
     private List<Album> albumList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +42,7 @@ public class MyPlaylistActivity extends AppCompatActivity {
 
 
     }
+
 
     private void prepareAlbumData() {
         Album album = new Album("AgneePath","Sonu nigam",getResources().getDrawable(R.drawable.agneepath));
@@ -74,4 +74,8 @@ public class MyPlaylistActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onItemClick(int position) {
+        mAdapter.selected(position);
+    }
 }

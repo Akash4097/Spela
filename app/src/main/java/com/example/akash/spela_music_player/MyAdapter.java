@@ -1,12 +1,16 @@
 package com.example.akash.spela_music_player;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.List;
 
 
@@ -15,7 +19,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView title,artist;
+        public TextView title, artist;
         public ImageView thumbnail;
         public ImageButton play, pause;
 
@@ -32,12 +36,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
 
         @Override
-        public void onClick(View v){
-            if(v.getId() == play.getId()){
-                play.setVisibility(View.GONE);
+        public void onClick(View v) {
+            if (v.getId() == play.getId()) {
                 pause.setVisibility(View.VISIBLE);
-            }
-            else if(v.getId() == pause.getId()){
+                play.setVisibility(View.GONE);
+            } else if (v.getId() == pause.getId()) {
                 pause.setVisibility(View.GONE);
                 play.setVisibility(View.VISIBLE);
             }
@@ -50,19 +53,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
-        View itemView =  LayoutInflater.from(parent.getContext())
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.songs_list_row, parent, false);
-
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainPlayerActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-           Album album = albumList.get(position);
-           holder.title.setText(album.getTitle());
-           holder.artist.setText(album.getArtist());
-           holder.thumbnail.setImageDrawable(album.getThumbnail());
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        Album album = albumList.get(position);
+        holder.title.setText(album.getTitle());
+        holder.artist.setText(album.getArtist());
+        holder.thumbnail.setImageDrawable(album.getThumbnail());
+
     }
 
     @Override

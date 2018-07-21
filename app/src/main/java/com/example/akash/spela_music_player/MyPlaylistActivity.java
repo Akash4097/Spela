@@ -1,10 +1,12 @@
 package com.example.akash.spela_music_player;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,7 +39,6 @@ public class MyPlaylistActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(albumList);
         mRecyclerView.setAdapter(mAdapter);
-        
         prepareAlbumData();
 
 

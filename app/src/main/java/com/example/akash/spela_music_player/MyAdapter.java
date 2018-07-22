@@ -14,8 +14,8 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<Album> albumList;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private static int selected_position;
+    public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView title, artist;
         public ImageView thumbnail;
@@ -35,6 +35,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         @Override
         public void onClick(View v) {
+
+            if(getAdapterPosition() == RecyclerView.NO_POSITION){
+                   return;
+            }
+
+            notifyItemChanged(selected_position);
+            selected_position = getAdapterPosition();
+            notifyItemChanged(selected_position);
+
             if (v.getId() == play.getId()) {
                 pause.setVisibility(View.VISIBLE);
                 play.setVisibility(View.GONE);
@@ -71,6 +80,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.artist.setText(album.getArtist());
         holder.thumbnail.setImageDrawable(album.getThumbnail());
 
+        if(selected_position == position){
+            holder.play.setVisibility(View.GONE);
+            holder.play.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.play.setVisibility(View.VISIBLE);
+            holder.play.setVisibility(View.GONE);
+        }
     }
 
     @Override

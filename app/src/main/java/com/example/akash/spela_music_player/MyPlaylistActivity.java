@@ -16,7 +16,7 @@ import java.util.List;
 
 import static java.security.AccessController.getContext;
 
-public class MyPlaylistActivity extends AppCompatActivity implements MyAdapter.MyAdapterClickListener {
+public class MyPlaylistActivity extends AppCompatActivity {
 
     private List<Album> albumList = new ArrayList<>();
     private RecyclerView mRecyclerView;
@@ -74,8 +74,4 @@ public class MyPlaylistActivity extends AppCompatActivity implements MyAdapter.M
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onItemClick(int position) {
-        mAdapter.selected(position);
-    }
 }
